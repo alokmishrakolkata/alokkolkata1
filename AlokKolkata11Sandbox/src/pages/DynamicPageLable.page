@@ -1,0 +1,14 @@
+<apex:page controller="DynamicPageLableExtension" docType="html-5.0">
+  <apex:pageBlock >
+      <apex:form id="myForm">
+          <apex:actionFunction name="reloadLabel" action="{!setValue}" reRender="myForm"/>
+          <apex:outputLabel >{!myLabel} : </apex:outputLabel>
+          <apex:inputfield value="{!myCandidate.Education__c}" onChange="reloadLabel()" />
+          <apex:variable var="count" value="{!1}"   />        <!-- Initialise-->
+          <apex:repeat value="{!StringsVal}" var="acc">
+              <apex:outputText value="{!acc}"  style="color:{!IF(count == StringsVal.size,'red','')}"/>
+              <apex:variable value="{!count+1}" var="count"/>  
+          </apex:repeat>
+      </apex:form>
+  </apex:pageBlock>
+</apex:page>
